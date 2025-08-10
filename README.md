@@ -1,70 +1,116 @@
-# Ansible Setup
 
-This is a Personal Ansible system Using Ansiable Pull with the purpose of setuping an Arch installation with the basic that I like to have in a personal setup.
-might add some stuff for a homeserver later
+# Personal Ansible Setup
+A Ansible Script that download my Arch Desktop setup and homelab setup? (To Be Work on). basically just download alot of basic package for desktop usage as well the dotfiles I use (found in this [repo](https://github.com/TriforceGB/.dotfiles))
 
-## Requirements for Desktop
-this Ansible playbook Assumes that you have already made an user with sudo and have install hyprland or in other words have install Arch with basic Arch Installer Stuff.
 
-## Requirements for Server
-Idk will prob make this for when I remake the homeserver on a different OS that isn't some old Ubuntu LTS
+## Features
 
-## Uses
-Just run this command and it will take care of the rest of Linux setup
+- Select from 3 presets (Base, Desktop, Server)
+    - Base: Just changes to Terminal Usage such as install zsh and plugins
+    - Desktop: install Base + packages and dots for Desktop or laptop Usage
+    - Server: Install Base + packages needed for running an homeserver (not working rn)
+     
+- It will also install the related dots for the presets from my dotfiles repo
+
+## Usage
+To run the Ansible Setup just run this command to install the needed packages and then run the Ansible Script 
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/TriforceGB/Ansible-Playbook/main/Scripts/Pre-Ansible.sh)"
 ```
-The command will Prompt for a Become Pass which is just your Sudo Password but after that everything will be Automatic
 
-
-# Game Plan
-Here some notes that I want to Do now I think
-1. either create a non password user to use or have the default user have no password (needed for yay and maybe end_4 dots)
-2. Download dotfiles
-3. Base Files
-- download packages
-4. Do Workstation 
-- Use the end_4 dots script to install
-- edit end_4 dots to my personal conf
-- add what ever other packages I want
-- remove unwanted packages
-5. Do Server?
-- idk figure this out later when I need to rebuild a server 
-- manily just download docker
-7. Add Dotfiles
-8. Remove temp user
-
-# Things I still need to Learn
-- Using bitwarden to login to stuff (I think 1password can do this or at least give stuff like ssh keys)
-
-## Whats Installed? (Desktop)
-### End_4 Packages of Note
-
-### Packages
-The Package list in the playbook Currently is This ...
-- ansible
-- firefox
-- fzf
-- git
-- less
-- otf-firamono-nerd
-- PulseAudio **Later**
-- stow
-- tree
-- yay **Later**
-- zoxide
+## Package List
+### Base
+#### zsh + stuff needed for plugins
 - zsh
-### Dotfiles and conf
-Ansible will also use GNU Stow to setup dotfiles/conf for ...
-- .zshrc
-- starship.toml
-
-### Plan stuff
-other stuff is plan such as ... 
-- Arch Conf
-- Grub Conf
-- Hyprland conf
-- nvim conf
-- drivers?  **Might Not be Needed from Arch Install**
-- auto logins?
-- wallpaper engine linux? **TBH to much work**
+- zoxide
+- eza
+- tmux
+#### Fonts
+- otf-firamono-nerd
+- noto-fonts
+- noto-fonts-cjk
+- noto-fonts-emoji
+- fzf
+#### Terminal Editors
+- nano
+- vim
+- neovim
+- vi (for visudo could remove later)
+- github-cli
+#### File Management and view
+- less
+- bat
+- superfile
+#### System View
+- htop
+- btop
+#### python
+- python
+- uv
+#### Terminal programs
+- fastfetch
+- tldr
+- cmatrix
+- tailscale
+- bind-tools
+### Desktop
+#### Basic Workstations Needs
+- kitty
+- gnome-disk-utility
+- timeshift
+- zen-browser-bin
+- vesktop-bin
+#### Boot
+- grub
+- sddm
+- qt6
+- qt6-svg
+- qt6-virtualkeyboard
+- qt6-multimedia
+- qt6-multimedia-ffmpeg
+#### Nautilus & Extensions
+- nautilus
+- sushi
+- nautilus-image-converter
+- imagemagick
+- folder-color-nautilus
+- nautilus-open-any-terminal
+- nautilus-admin-gtk4
+#### Editor and Viewer
+- audacity
+- gimp
+- gnome-text-editor
+- mission-center (Task Manager)
+- libreoffice-fresh
+- loupe
+- obs-studio
+- vlc
+- zed
+- visual-studio-code-bin
+#### Password Manager
+- fuzzel
+- rbw
+- rofi-rbw
+- bitwarden-bin
+#### Gaming
+- steam
+- lutris
+- prismlauncher
+- wootomation-appimage
+#### Others
+- obsidian
+- syncthing
+- qbittorrent
+- vulkan-tools
+- qalculate-gtk
+- archlinux-tweak-tool-git
+- localsend
+- parabolic
+- upscayl-bin
+- mesa
+- vulkan
+## Todo
+- finalize the package install list
+- make the dots being install a separate flag so you can just install the package but not the dotfiles
+- create the file for server (might wait until I redo the homeserver)
+- unhardcode some personal info such as email
